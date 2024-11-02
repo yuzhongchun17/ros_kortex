@@ -105,8 +105,12 @@
         </node>
         <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 
-        <!-- Start RViz -->
-        <node name="rviz" pkg="rviz" type="rviz" output="log" args="-f base_link" if="$(arg start_rviz)"/> 
+        <!-- Start RViz (with default setting)
+        <node name="rviz" pkg="rviz" type="rviz" output="log" args="-f base_link" if="$(arg start_rviz)"/>  -->
+
+        <!-- Start RViz with robot model and moveit motion planning (for dof 7, robotiq_2f_140) -->
+        <node name="rviz" pkg="rviz" type="rviz" output="log" args="-d $(find gen3_robotiq_2f_140_move_it_config)/config/test_moveit.rviz" if="$(arg start_rviz)"/>
+
 
         <!-- Tests -->
         <!-- Initialization test and custom functional tests -->
